@@ -8,15 +8,19 @@
 </head>
 <body>
     <p><a href="/">Home</a></p>
-    <h1>Tags</h1>
+    
+    <h1>{{ tag.name }}</h1>
 
     <ul>
-        {% for tag in tags %}
-        <li><a href="/tags/{{ tag.id }}">{{ tag.name }} </a></li>
+        {% for post in tag.posts %}
+        <li>{{ post.title }}</li>
         {% endfor %}
     </ul>
-    <input type="button" onclick="location.href='/tags/new';" value="Add Tag" id="new-tag-button">
-
     
+
+    <input id="edit-button" type="button" onclick="location.href='/tags/{{ tag.id }}/edit';" value="Edit">
+    <input id="delete-button" type="button" onclick="location.href='/tags/{{ tag.id }}/delete';" value="Delete">
+
+
 </body>
 </html>

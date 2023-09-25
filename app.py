@@ -211,7 +211,11 @@ def tags_list():
 
 @app.route('/tags/<tag_id>')
 def show_tag_detail(tag_id):
-    pass
+    """Display posts that use a given tag."""
+    
+    tag = Tag.query.get_or_404(tag_id)
+    
+    return render_template("tag.html", tag=tag)
 
 
 # Make a new tag.

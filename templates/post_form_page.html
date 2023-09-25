@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
+    <p><a href="/">Home</a></p>
     <h1>Add Post for {{user.first_name }} {{user.last_name }}</h1>
 
     <form action="/users/{{ user.id }}/posts/new" method="POST" id="new-post-form">
