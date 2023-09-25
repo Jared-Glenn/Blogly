@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogly</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Add Post for {{user.first_name }} {{user.last_name }}</h1>
+
+    <form action="/users/{{ user.id }}/posts/new" method="POST" id="new-post-form">
+        <label for="post-title">Title</label>
+        <br>
+        <input type="text" id="post-title" class="new-form" name="post-title" placeholder="Enter a title for your post">
+        <br>
+        <label for="post-content">Content</label>
+        <br>
+        <textarea cols="50" rows="50" id="post-content" class="new-form" name="post-content" placeholder="Post content here."></textarea>
+    </form>
+    <input id="cancel-button" type="button" onclick="location.href='/users/{{ user.id }}';" value="Cancel">
+    <button class="change-table" form="new-post-form">Add</button>
+</body>
+</html>

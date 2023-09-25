@@ -1,0 +1,132 @@
+body {
+    margin: 3rem;
+}
+
+h1 {
+    font-size: 2.4rem;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#new-user-button {
+    margin-left: 3rem;
+    padding: 0.4rem;
+    color: white;
+    border-radius: 5px;
+    font-weight: 600;
+    background-color: grey;
+    border-color: grey;
+}
+
+#new-user-button:hover {
+    background-color: rgb(167, 167, 167);
+    border-color: rgb(184, 184, 184);
+}
+
+br {
+    margin-top: 0.5rem;
+}
+
+.new-form {
+    margin-top: 0.6rem;
+    margin-bottom: 0.8rem;
+    height: 1.6rem;
+    width: 20rem;
+    padding-left: 0.4rem;
+}
+
+#add-button {
+    margin-left: 17rem;
+}
+
+.change-table {
+    padding: 0.5rem 0.8rem;
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: rgb(47, 136, 47);
+    border-color: rgb(47, 136, 47);
+}
+
+.change-table:hover {
+    background-color: rgb(65, 189, 65);
+    border-color: rgb(65, 189, 65);
+}
+
+img {
+    max-width: 10rem;
+    position: absolute;
+
+}
+
+.username {
+    margin-left: 11rem;
+    font-size: 2rem;
+}
+
+#edit-button {
+    margin-left: 11rem;
+    padding: 0.3rem 0.5rem;
+    color: white;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background-color: rgb(29, 107, 209);
+    border-color: rgb(29, 107, 209);
+}
+
+#delete-button {
+    margin-left: 0.3rem;
+    padding: 0.3rem 0.5rem;
+    color: white;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background-color: red;
+    border-color: red;
+}
+
+.edit-form {
+    margin-top: 0.6rem;
+    margin-bottom: 0.8rem;
+    height: 1.6rem;
+    width: 20rem;
+    padding-left: 0.4rem;
+}
+
+#cancel-button {
+    margin-left: 11rem;
+    padding: 0.5rem 0.8rem;
+    color: rgb(47, 136, 47);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: white;
+    border-color: rgb(47, 136, 47);
+}
+
+#cancel-button:hover {
+    color: white;
+    background-color: rgb(65, 189, 65);
+    border-color: rgb(65, 189, 65);
+}
+
+.user-posts-list {
+    margin-left: 11rem;
+}
+
+#add-post-button {
+    margin-left: 11rem;
+    padding: 0.4rem 0.7rem;
+    color: white;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: rgb(29, 107, 209);
+    border-color: rgb(29, 107, 209);
+}
+
+#post-content {
+    height: 4rem;
+}
