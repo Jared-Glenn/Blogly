@@ -14,7 +14,7 @@
         <li><a href="/users/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></li>
         {% endfor %}
     </ul>
-    <input type="button" onclick="location.href='/users/new';" value="Add User" id="new-user-button">
+    <input type="button" onclick="location.href='/users/new';" value="Add User" class="new-button-index">
 
     <h1>Posts</h1>
 
@@ -23,11 +23,11 @@
         <li><a href="/posts/{{ post.id }}">{{ post.title }}</a></li>
         {% endfor %}
     </ul>
-    <input type="button" onclick="location.href='/posts/new';" value="Add Post" id="new-post-button">
+    <input type="button" onclick="location.href='/posts/new';" value="Add Post" class="new-button-index">
 
 
     <h3><a href="/tags">Tags</a></h3>
 
-    <input type="button" onclick="location.href='/tags/new';" value="New Tag" id="new-tag-button">
+    <input type="button" onclick="location.href='/tags/new';" value="Add Tag" class="new-button-index">
 </body>
 </html>

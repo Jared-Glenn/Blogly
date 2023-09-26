@@ -13,7 +13,7 @@
 
     <ul>
         {% for post in tag.posts %}
-        <li>{{ post.title }}</li>
+        <li><a href="/posts/{{ post.id }}">{{ post.title }}</a></li>
         {% endfor %}
     </ul>
     

@@ -222,12 +222,22 @@ def show_tag_detail(tag_id):
 
 @app.route('/tags/new')
 def new_tag_form():
-    pass
+    """Create a new tag."""
+    
+    return render_template("new_tag.html")
 
 
 @app.route('/tags/new', methods=['POST'])
 def create_new_tag():
-    pass
+    """Add the new user and redirect to the user's page."""
+    
+    name = request.form["tag-name"]
+    
+    new_tag = Tag(name=name)
+    db.session.add(new_tag)
+    db.session.commit()
+    
+    return redirect(f"/tags/{new_tag.id}")
 
 
 # Edit a tag.
