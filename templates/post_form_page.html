@@ -18,6 +18,11 @@
         <label for="post-content">Content</label>
         <br>
         <textarea cols="50" rows="50" id="post-content" class="new-form" name="post-content" placeholder="Post content here."></textarea>
+        {% for tag in tags %}
+        <br>
+        <label for="{{ tag.id }}-tag">{{ tag.name }}</label>
+        <input type="checkbox" name="{{ tag.id }}-tag" id="{{ tag.id }}-tag" value="{{ tag.name }}">
+        {% endfor %}
     </form>
     <input id="cancel-button" type="button" onclick="location.href='/users/{{ user.id }}';" value="Cancel">
     <button class="change-table" form="new-post-form">Add</button>

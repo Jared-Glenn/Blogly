@@ -18,6 +18,13 @@ beka = User(first_name="Beka", last_name="Glenn", image_url="https://scontent-de
 ethan = User(first_name="Ethan", last_name="Glenn", image_url="https://upload.wikimedia.org/wikipedia/en/e/e7/Steve_%28Minecraft%29.png?20220417165835")
 ellie = User(first_name="Ellie", last_name="Glenn", image_url="https://www.brooklinebooksmith.com/sites/brooklinebooksmith.com/files/9780763665104.spt_.1.jpg")
 
+db.session.add(jared)
+db.session.add(beka)
+db.session.add(ethan)
+db.session.add(ellie)
+
+db.session.commit()
+
 # Add posts
 hookie = Post(title="Hookie", content="Lookie lookie, I got Hookie!", user_id=1)
 im_amazing = Post(title="I'm Amazing!", content="Seriously, have you noticed how amazing I am? I'm really a heck of a guy, and I wish I would let everyone know. Anyways, I'm amazing, and I'm glad you're taking a moment to think about it and I hope you really take that to heart.", user_id=1)

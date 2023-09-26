@@ -48,9 +48,8 @@ class Post(db.Model):
     user_id = db.Column(db.Integer,
                         db.ForeignKey('users.id'),
                         nullable=False)
-    tags = db.relationship('Tag',
-                           secondary='posts_tags',
-                           backref='posts1')
+    tags = db.relationship('PostTag',
+                           backref='post')
     
     def __repr__(self):
         """Show info about the post."""
@@ -70,9 +69,8 @@ class Tag(db.Model):
     name = db.Column(db.String(50),
                      nullable=False,
                      unique=True)
-    posts = db.relationship('Post',
-                            secondary='posts_tags',
-                            backref='tags1')
+    posts = db.relationship('PostTag',
+                            backref='tag')
     
     def __repr__(self):
         """Show info about tags."""
@@ -92,8 +90,3 @@ class PostTag(db.Model):
                        db.ForeignKey('tags.id'),
                        primary_key=True)
     
-    def __repr__(self):
-        """Show info from intersection table on posts and tags."""
-        
-        pt = self
-        return f"<Tag {pt.post_id} {pt.tag_id}>"

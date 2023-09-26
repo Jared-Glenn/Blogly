@@ -15,11 +15,15 @@
         <input type="text" id="post-title" class="new-form" name="post-title" value="{{ post.title }}">
         <br>
         <label for="post-content">Content</label>
-        <input type="text" id="post-content" class="new-form" name="post-content" value="{{ post.content }}">
-        {% for tag in tags %}
+        <textarea type="text" id="post-content" class="new-form" name="post-content">{{ post.content }}</textarea>
+        {% for all_tag in all_tags %}
         <br>
-        <label for="{{ tag.id }}-tag">{{ tag.name }}</label>
-        <input type="checkbox" name="{{ tag.id }}-tag" id="{{ tag.id }}-tag" value="{{ tag.name }}">
+        <label for="{{ all_tag.id }}-tag">{{ all_tag.name }}</label>
+        {% if all_tag.name in tags %}
+        <input type="checkbox" name="{{ all_tag.id }}-tag" id="{{ all_tag.id }}-tag" value="{{ all_tag.name }}"" checked>
+        {% else %}
+        <input type="checkbox" name="{{ all_tag.id }}-tag" id="{{ all_tag.id }}-tag" value="{{ all_tag.name }}">
+        {% endif %}
         {% endfor %}
     </form>
     <input id="cancel-button" type="button" onclick="location.href='/posts/{{ post.id }}';" value="Cancel">

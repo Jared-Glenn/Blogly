@@ -124,13 +124,16 @@ def show_post_form(user_id):
     """Show the form for making a new post."""
     
     user_to_post = User.query.get_or_404(user_id)
+    tags = Tag.query.all()
     
-    return render_template("post_form_page.html", user=user_to_post)
+    return render_template("post_form_page.html", user=user_to_post, tags=tags)
 
 
 @app.route('/users/<user_id>/posts/new', methods=["POST"])
 def create_post(user_id):
     """Add a post for a user."""
+    
+    tags = Tag.query.all()
     
     post_title = request.form["post-title"]
     post_content = request.form["post-content"]
@@ -139,6 +142,14 @@ def create_post(user_id):
     
     new_post = Post(title=post_title, content=post_content, created_at=created, user_id=user_id)
     db.session.add(new_post)
+    
+    db.session.commit()
+    
+    for tag in tags:
+        if request.form.get(f"{tag.id}-tag") == tag.name:
+            new_post_tag = PostTag(post_id=new_post.id, tag_id=tag.id)
+            db.session.add(new_post_tag)
+    
     db.session.commit()
     
     return redirect(f"/posts/{new_post.id }")
@@ -149,10 +160,15 @@ def create_post(user_id):
 def show_post(post_id):
     """Show a post."""
     
+    tags = []
     post = Post.query.get_or_404(post_id)
     user = User.query.get_or_404(post.user_id)
+    for tag in post.tags:
+        tag_id = tag.tag_id
+        actual_tag = Tag.query.get_or_404(tag_id)
+        tags.append([actual_tag.id, actual_tag.name])
     
-    return render_template("post.html", post=post, user=user)
+    return render_template("post.html", post=post, user=user, tags=tags)
 
 # Edit Post
 
@@ -161,27 +177,36 @@ def show_post_edit_form(post_id):
     """Show the form for editing a post."""
     
     post = Post.query.get(post_id)
-    tags = Tag.query.all()
+    all_tags = Tag.query.all()
+    tags = []
+    for tag in post.tags:
+        tag_id = tag.tag_id
+        actual_tag = Tag.query.get_or_404(tag_id)
+        tags.append(actual_tag.name)
     
-    return render_template("edit_post.html", post=post, tags=tags)
+    return render_template("edit_post.html", post=post, tags=tags, all_tags=all_tags)
 
 
 @app.route('/posts/<post_id>/edit', methods=["POST"])
 def apply_post_edit(post_id):
     """Edit an individual user."""
-    
+
     post_to_edit = Post.query.get_or_404(post_id)
     tags = Tag.query.all()
     
     post_to_edit.title = request.form["post-title"]
     post_to_edit.content = request.form["post-content"]
-    for tag in post_to_edit.tags:
-        print(f"!!!!!!!!!!!!!REMOVING {tag}!!!!!!!!!!!!!!!!!!!")
-        post_to_edit.tags.remove(tag)
+    
     for tag in tags:
-        if request.form[f"{tag.id}-tag"] == tag.name:
-            print(f"!!!!!!!!!!!!!ADDING {tag}!!!!!!!!!!!!!!!!!!!")
-            post_to_edit.tags.append(tag)
+        post_tag = PostTag.query.filter_by(post_id=post_id, tag_id=tag.id).first()
+        if request.form.get(f"{tag.id}-tag") == tag.name and post_tag:
+            continue
+        elif request.form.get(f"{tag.id}-tag") == tag.name:
+            new_post_tag = PostTag(post_id=post_id, tag_id=tag.id)
+            db.session.add(new_post_tag)
+        elif post_tag:
+            db.session.delete(post_tag)
+        
     
     db.session.commit()
     
@@ -225,9 +250,14 @@ def tags_list():
 def show_tag_detail(tag_id):
     """Display posts that use a given tag."""
     
+    posts = []
     tag = Tag.query.get_or_404(tag_id)
+    for post in tag.posts:
+        post_id = post.post_id
+        actual_post = Post.query.get_or_404(post_id)
+        posts.append([actual_post.id, actual_post.title])
     
-    return render_template("tag.html", tag=tag)
+    return render_template("tag.html", tag=tag, posts=posts)
 
 
 # Make a new tag.
