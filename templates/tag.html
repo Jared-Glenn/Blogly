@@ -17,10 +17,9 @@
         {% endfor %}
     </ul>
     
-
-    <input id="edit-button" type="button" onclick="location.href='/tags/{{ tag.id }}/edit';" value="Edit">
-    <input id="delete-button" type="button" onclick="location.href='/tags/{{ tag.id }}/delete';" value="Delete">
-
-
+    <form>
+    <input id="edit-button" type="button" onclick="location.href='/tags/{{ tag.id }}/edit';" formmethod="get" value="Edit">
+    <input id="delete-button" type="button" onclick="location.href='/tags/{{ tag.id }}/delete';" formmethod="post" value="Delete">
+</form>
 </body>
 </html>

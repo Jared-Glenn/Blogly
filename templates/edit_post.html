@@ -16,6 +16,11 @@
         <br>
         <label for="post-content">Content</label>
         <input type="text" id="post-content" class="new-form" name="post-content" value="{{ post.content }}">
+        {% for tag in tags %}
+        <br>
+        <label for="{{ tag.id }}-tag">{{ tag.name }}</label>
+        <input type="checkbox" name="{{ tag.id }}-tag" id="{{ tag.id }}-tag" value="{{ tag.name }}">
+        {% endfor %}
     </form>
     <input id="cancel-button" type="button" onclick="location.href='/posts/{{ post.id }}';" value="Cancel">
     <button id="edit-post-button" class="change-table" form="edit-post-form">Save</button>
